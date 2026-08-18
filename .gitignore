@@ -1,0 +1,42 @@
+node_modules/
+.pnpm-store/
+
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+.env
+.env.local
+.env.*.local
+
+*.log
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+.idea/
+
+# Supabase local state
+supabase/.temp/
+supabase/.branches/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Tool caches
+.eslintcache
+
+# Build
+dist/
+build/
+coverage/
+*.tsbuildinfo
+
+# Playwright
+playwright-report/
+test-results/
+blob-report/

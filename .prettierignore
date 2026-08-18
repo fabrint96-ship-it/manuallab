@@ -1,0 +1,17 @@
+node_modules
+dist
+build
+coverage
+
+pnpm-lock.yaml
+
+supabase/.temp
+supabase/.branches
+
+.env
+.env.*
+!.env.example
+
+playwright-report
+test-results
+blob-report

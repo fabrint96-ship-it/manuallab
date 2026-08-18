@@ -1,0 +1,54 @@
+services:
+  - type: web
+    name: manuallab-web
+    runtime: static
+
+    buildCommand: pnpm install --frozen-lockfile && pnpm --filter @manuallab/web build
+
+    staticPublishPath: ./apps/web/dist
+
+    autoDeployTrigger: checksPass
+
+    buildFilter:
+      paths:
+        - apps/web/**
+        - packages/**
+        - package.json
+        - pnpm-lock.yaml
+        - pnpm-workspace.yaml
+        - tsconfig.base.json
+
+  - type: web
+    name: manuallab-api
+    runtime: node
+    region: frankfurt
+
+    buildCommand: pnpm install --frozen-lockfile && pnpm --filter @manuallab/api build
+
+    startCommand: pnpm --filter @manuallab/api start
+
+    healthCheckPath: /health
+
+    autoDeployTrigger: checksPass
+
+    buildFilter:
+      paths:
+        - apps/api/**
+        - packages/**
+        - package.json
+        - pnpm-lock.yaml
+        - pnpm-workspace.yaml
+        - tsconfig.base.json
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+
+      - key: API_HOST
+        value: 0.0.0.0
+
+      - key: WEB_URL
+        sync: false
+
+      - key: API_URL
+        sync: false

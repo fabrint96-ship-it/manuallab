@@ -1,0 +1,48 @@
+{
+  "name": "manuallab",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered platform for transforming technical PDF manuals into structured knowledge, interactive learning content and simulated laboratories.",
+  "packageManager": "pnpm@10.13.1",
+  "engines": {
+    "node": "24.13.0",
+    "pnpm": ">=10.0.0 <11.0.0"
+  },
+  "scripts": {
+    "dev": "pnpm -r --parallel --if-present dev",
+    "build": "pnpm -r --if-present build",
+    "test": "pnpm test:unit && pnpm test:web",
+    "test:unit": "vitest run --config vitest.config.mts",
+    "test:unit:watch": "vitest --config vitest.config.mts",
+    "test:web": "pnpm --filter @manuallab/web test",
+    "test:e2e": "playwright test",
+    "test:coverage": "vitest run --coverage --config vitest.config.mts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
+    "typecheck": "pnpm -r --if-present typecheck",
+    "supabase": "supabase",
+    "supabase:start": "supabase start",
+    "supabase:stop": "supabase stop",
+    "supabase:status": "supabase status",
+    "supabase:reset": "supabase db reset",
+    "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test && pnpm build",
+    "check:full": "pnpm check && pnpm test:e2e"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.62.1",
+    "@vitest/coverage-v8": "^4.1.10",
+    "eslint": "^10.8.1",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.1.1",
+    "eslint-plugin-react-refresh": "^0.5.4",
+    "globals": "^17.11.0",
+    "prettier": "^3.9.6",
+    "supabase": "^2.114.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.67.0",
+    "vitest": "^4.1.10"
+  }
+}
