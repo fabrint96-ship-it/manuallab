@@ -1105,7 +1105,7 @@ Integrar el estado completo de Foundation mediante el flujo Git oficial.
 ### Status
 
 ```text
-PENDING
+COMPLETED
 ```
 
 ---
@@ -1190,27 +1190,27 @@ docs/episodes/EP-00-FOUNDATION.md
 
 EP-00 podrá cerrarse cuando:
 
-- [ ] el monorepo esté configurado;
-- [ ] pnpm funcione desde root;
-- [ ] TypeScript base esté configurado;
-- [ ] `apps/web` compile;
-- [ ] `apps/api` compile;
-- [ ] los packages base estén configurados;
-- [ ] Supabase base esté preparado;
-- [ ] `.env.example` esté completo;
-- [ ] los secretos estén ignorados;
-- [ ] lint funcione;
-- [ ] formatting esté configurado;
-- [ ] typecheck funcione;
-- [ ] tests funcionen;
-- [ ] build completo funcione;
-- [ ] CI funcione;
-- [ ] Render esté preparado;
-- [ ] health check responda;
-- [ ] documentación Foundation esté actualizada;
-- [ ] no existan `.gitkeep` innecesarios;
-- [ ] el repositorio no contenga secretos;
-- [ ] el estado final esté integrado correctamente;
+- [x] el monorepo esté configurado;
+- [x] pnpm funcione desde root;
+- [x] TypeScript base esté configurado;
+- [x] `apps/web` compile;
+- [x] `apps/api` compile;
+- [x] los packages base estén configurados;
+- [x] Supabase base esté preparado;
+- [x] `.env.example` esté completo;
+- [x] los secretos estén ignorados;
+- [x] lint funcione;
+- [x] formatting esté configurado;
+- [x] typecheck funcione;
+- [x] tests funcionen;
+- [x] build completo funcione;
+- [x] CI funcione;
+- [x] Render esté preparado;
+- [x] health check responda;
+- [x] documentación Foundation esté actualizada;
+- [x] no existan `.gitkeep` innecesarios;
+- [x] el repositorio no contenga secretos;
+- [x] el estado final esté integrado correctamente;
 - [ ] se cree el tag `v0.1.0`;
 - [ ] se publique la release `v0.1.0`.
 
@@ -1293,7 +1293,7 @@ F0.15  COMPLETED
 F0.16  COMPLETED
 F0.17  COMPLETED
 F0.18  COMPLETED
-F0.19  PENDING
+F0.19  COMPLETED
 F0.20  PENDING
 ```
 
@@ -1319,14 +1319,12 @@ No es necesario registrar aquí cada comando ejecutado.
 Cuando EP-00 termine, esta sección deberá actualizarse con:
 
 ```text
-Final status
-Release date
-Final commit
-Tag
-Pull Request
-Validation result
-Known limitations
-Deferred items
+Final status: RELEASE PREPARATION
+Release: v0.1.0
+Git branch: main
+Foundation integration: completed
+Tag: pending
+GitHub Release: pending
 ```
 
 Hasta entonces:
