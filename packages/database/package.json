@@ -17,6 +17,10 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json",
-    "typecheck": "tsc -p tsconfig.json --noEmit"
+    "typecheck": "pnpm --filter @manuallab/shared build && tsc -p tsconfig.json --noEmit",
+    "test": "pnpm --filter @manuallab/shared build && pnpm --dir ../.. exec vitest run --config vitest.config.mts packages/database/src"
+  },
+  "dependencies": {
+    "@manuallab/shared": "workspace:*"
   }
 }
