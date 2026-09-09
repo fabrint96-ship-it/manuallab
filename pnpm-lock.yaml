@@ -132,7 +132,11 @@ importers:
 
   packages/content-engine: {}
 
-  packages/database: {}
+  packages/database:
+    dependencies:
+      '@manuallab/shared':
+        specifier: workspace:*
+        version: link:../shared
 
   packages/knowledge-engine: {}
 
