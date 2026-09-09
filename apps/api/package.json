@@ -8,11 +8,15 @@
     "dev": "tsx watch src/server.ts",
     "build": "tsc -p tsconfig.json",
     "start": "node dist/server.js",
-    "typecheck": "tsc -p tsconfig.json --noEmit",
-    "test": "vitest run --config ../../vitest.config.mts apps/api/src",
-    "test:watch": "vitest --config ../../vitest.config.mts apps/api/src"
+    "typecheck": "pnpm --filter @manuallab/database... build && tsc -p tsconfig.json --noEmit",
+    "test": "pnpm --filter @manuallab/database... build && pnpm --dir ../.. exec vitest run --config vitest.config.mts apps/api/src",
+    "test:watch": "pnpm --filter @manuallab/database... build && pnpm --dir ../.. exec vitest --config vitest.config.mts apps/api/src",
+    "test:integration": "pnpm --filter @manuallab/database... build && tsx tests/project-persistence.integration.ts"
   },
   "dependencies": {
+    "@manuallab/database": "workspace:*",
+    "@manuallab/shared": "workspace:*",
+    "@supabase/supabase-js": "^2.116.0",
     "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "zod": "^4.4.3"
