@@ -1133,7 +1133,7 @@ v0.1.0
 ### Status
 
 ```text
-PENDING
+COMPLETED
 ```
 
 ---
@@ -1211,8 +1211,8 @@ EP-00 podrá cerrarse cuando:
 - [x] no existan `.gitkeep` innecesarios;
 - [x] el repositorio no contenga secretos;
 - [x] el estado final esté integrado correctamente;
-- [ ] se cree el tag `v0.1.0`;
-- [ ] se publique la release `v0.1.0`.
+- [x] se cree el tag `v0.1.0`;
+- [x] se publique la release `v0.1.0`.
 
 ---
 
@@ -1294,7 +1294,7 @@ F0.16  COMPLETED
 F0.17  COMPLETED
 F0.18  COMPLETED
 F0.19  COMPLETED
-F0.20  PENDING
+F0.20  COMPLETED
 ```
 
 ---
@@ -1319,12 +1319,15 @@ No es necesario registrar aquí cada comando ejecutado.
 Cuando EP-00 termine, esta sección deberá actualizarse con:
 
 ```text
-Final status: RELEASE PREPARATION
+Final status: COMPLETED
 Release: v0.1.0
 Git branch: main
-Foundation integration: completed
-Tag: pending
-GitHub Release: pending
+Tag: v0.1.0
+Foundation validation: PASSED
+GitHub Release: PUBLISHED
+Known blocking issues: none
+Next episode: EP-01 — PROJECT MANAGEMENT
+Final commit: afa0180
 ```
 
 Hasta entonces:
