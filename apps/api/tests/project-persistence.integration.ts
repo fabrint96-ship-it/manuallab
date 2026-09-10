@@ -4,7 +4,9 @@ import { readFileSync } from 'node:fs';
 import { spawnSync } from 'node:child_process';
 import { setTimeout } from 'node:timers/promises';
 import { createClient } from '@supabase/supabase-js';
+import request from 'supertest';
 import { projectSchema } from '@manuallab/shared';
+import { createApp } from '../src/app.js';
 import { type ProjectDatabase } from '../src/projects/project-database.js';
 import { SupabaseProjectRepository } from '../src/projects/supabase-project-repository.js';
 import { ProjectService } from '../src/projects/project-service.js';
@@ -208,8 +210,51 @@ try {
       rejected.reason instanceof ProjectSlugConflictError,
   );
 
+  const app = createApp({ projectService: service });
+  time = new Date('2026-09-10T13:00:00Z');
+  const createdResponse = await request(app).post('/api/projects').send({
+    name: 'HTTP project',
+    slug: 'http-project',
+    description: 'Remove through HTTP',
+  });
+  assert.equal(createdResponse.status, 201);
+  const httpProject = projectSchema.parse(createdResponse.body.data);
+
+  assert.deepEqual(
+    (await request(app).get(`/api/projects/${httpProject.id}`)).body.data,
+    httpProject,
+  );
+  assert.deepEqual(
+    (await request(app).get('/api/projects/slug/http-project')).body.data,
+    httpProject,
+  );
+  assert.ok(
+    (await request(app).get('/api/projects')).body.data.some(
+      (project: { id: string }) => project.id === httpProject.id,
+    ),
+  );
+
+  time = new Date('2026-09-10T14:00:00Z');
+  const updatedResponse = await request(app)
+    .patch(`/api/projects/${httpProject.id}`)
+    .send({ slug: 'http-project-updated', description: null });
+  assert.equal(updatedResponse.status, 200);
+  assert.equal(updatedResponse.body.data.slug, 'http-project-updated');
+  assert.equal(Object.hasOwn(updatedResponse.body.data, 'description'), false);
+
+  time = new Date('2026-09-10T15:00:00Z');
+  const archivedResponse = await request(app).post(
+    `/api/projects/${httpProject.id}/archive`,
+  );
+  assert.equal(archivedResponse.status, 200);
+  assert.equal(archivedResponse.body.data.status, 'archived');
+  assert.equal(
+    (await request(app).get('/api/projects/slug/http-project-updated')).status,
+    200,
+  );
+
   console.log(
-    'PASS: real Project create -> ID/slug lookup -> deterministic list -> update -> archive; null description, missing records, uniqueness and concurrent creation.',
+    'PASS: service and HTTP Project flows through real Supabase SDK/PostgREST/PostgreSQL; create, lookups, deterministic list, update, archive, null description, missing records, uniqueness and concurrent creation.',
   );
 } finally {
   // Only randomly named resources created by this run can be removed.
